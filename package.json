@@ -19,5 +19,8 @@
   "homepage": "https://github.com/schmartmann/fountain-diff-visualizer#readme",
   "devDependencies": {
     "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "git-diff": "^2.0.6"
   }
 }
