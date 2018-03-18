@@ -4,13 +4,12 @@
   "private": true,
   "dependencies": {
     "electron": "^1.8.4",
+    "fetch": "^1.1.0",
     "foreman": "^2.0.0",
-    "git-diff": "^2.0.6",
     "printf": "^0.2.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1",
-    "readfile-go": "^1.0.5"
+    "react-scripts": "1.1.1"
   },
   "homepage": "./",
   "main": "src/ElectronStarter.js",

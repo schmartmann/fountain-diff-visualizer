@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../stylesheets/Style.css';
-import Differ from '../actions/Differ.js';
+import Differ from '../components/Differ.js';
 import Drag from '../actions/Drag.js';
 
 class App extends Component {
@@ -9,19 +9,25 @@ class App extends Component {
     this.state = {
     };
   };
-  printDiff() {
-    var str = Differ();
-    return(
-      <div>
-        <h1>{ str }</h1>
-        <Drag/>
-     </div>
-    )
-  }
+  // printDiff() {
+  //   var diff = Differ('develop', 'feature/add-git-diff-tool');
+  //   if ( diff.files ) {
+  //     debugger
+  //     var files = diff.files;
+  //     return files.map( file => {
+  //       return(
+  //         <div key={ file[ "sha" ] }>
+  //           { file[ "patch" ] }
+  //         </div>
+  //       )
+  //     } )
+  //   }
+  // };
   render() {
     return (
       <div className="App">
-        { this.printDiff() }
+        <Differ/>
+        <Drag/>
       </div>
     );
   }
