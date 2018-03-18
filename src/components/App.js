@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import '../stylesheets/Style.css';
-import Differ from './Differ.js';
+import Differ from '../actions/Differ.js';
+import Drag from '../actions/Drag.js';
 
 class App extends Component {
   constructor() {
@@ -14,6 +14,7 @@ class App extends Component {
     return(
       <div>
         <h1>{ str }</h1>
+        <Drag/>
      </div>
     )
   }
