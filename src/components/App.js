@@ -1,33 +1,23 @@
 import React, { Component } from 'react';
 import '../stylesheets/Style.css';
 import Differ from '../components/Differ.js';
-import Drag from '../actions/Drag.js';
 
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
+      githubToken: null
     };
   };
-  // printDiff() {
-  //   var diff = Differ('develop', 'feature/add-git-diff-tool');
-  //   if ( diff.files ) {
-  //     debugger
-  //     var files = diff.files;
-  //     return files.map( file => {
-  //       return(
-  //         <div key={ file[ "sha" ] }>
-  //           { file[ "patch" ] }
-  //         </div>
-  //       )
-  //     } )
-  //   }
-  // };
+  componentWillMount() {
+    var token = process.env.REACT_APP_GITHUB_PERSONAL_TOKEN;
+    this.setState( { githubToken: token } );
+  };
   render() {
     return (
       <div className="App">
-        <Differ/>
-        <Drag/>
+        <Differ githubToken={ this.state.githubToken }/>
       </div>
     );
   }

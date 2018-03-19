@@ -9,11 +9,11 @@ class Differ extends Component {
     this.renderDiffs = this.renderDiffs.bind( this );
   };
   componentDidMount() {
-    this.loadDiff( 'develop', 'feature/add-git-diff-tool' );
+    this.loadDiff( 'trivia', 'master', 'feature/test-changes' );
   }
-  loadDiff( base, head ) {
+  loadDiff( repo, base, head ) {
     fetch(
-      `https://api.github.com/repos/schmartmann/fountain-diff-visualizer/compare/${ base }...${ head }`,
+      `https://api.github.com/repos/schmartmann/${ repo }/compare/${ base }...${ head }?access_token=${ this.props.githubToken }`,
       {
         headers: { 'accept': 'application/vnd.github.v3+json'},
         method: 'GET'
@@ -33,7 +33,7 @@ class Differ extends Component {
     return diff.map( diffs => {
       return (
         <div key={ diffs.sha }>
-          { diffs.status }
+          { diffs.patch }
         </div>
       )
     } )
