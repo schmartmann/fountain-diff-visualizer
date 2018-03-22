@@ -9,21 +9,8 @@ class Differ extends Component {
     this.renderDiffs = this.renderDiffs.bind( this );
   };
   componentDidMount() {
-    this.loadDiff( 'trivia', 'master', 'feature/test-changes' );
+    debugger
   }
-  loadDiff( repo, base, head ) {
-    fetch(
-      `https://api.github.com/repos/schmartmann/${ repo }/compare/${ base }...${ head }?access_token=${ this.props.githubToken }`,
-      {
-        headers: { 'accept': 'application/vnd.github.v3+json'},
-        method: 'GET'
-      }
-    )
-    .then( response => response.json() )
-    .then( response => {
-      this.updateDiff( response );
-    } )
-  };
   updateDiff( response ) {
     var files = response.files;
     this.setState( { diff: files } );
