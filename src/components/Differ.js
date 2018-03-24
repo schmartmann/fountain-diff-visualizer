@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 
 class Differ extends Component {
   constructor() {
-    super(); 
+    super();
     this.state = {
       diff: []
     };
     this.renderDiffs = this.renderDiffs.bind( this );
   };
-  componentDidMount() {
-    debugger
+  componentWillReceiveProps(nextProps) {
+    var diffFiles = nextProps.currentDiff.files
+    this.setState( { diff: diffFiles })
   }
-  updateDiff( response ) {
-    var files = response.files;
-    this.setState( { diff: files } );
-  };
   renderDiffs() {
     var diff = this.state.diff;
     return diff.map( diffs => {
