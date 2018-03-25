@@ -75,22 +75,21 @@ function createAuthWindow() {
   }
 
   function requestGithubToken( options, code ) {
-    apiRequests
-      .post( 'https://github.com/login/oauth/access_token', {
-        client_id: options.client_id,
-        client_secret: options.client_secret,
-        code: code
-      } )
-      .end( function( err, response ) {
-        if ( response && response.ok ) {
-          // success -- received token
-          // store in local storage?
-          window.localStorage.setItem( 'githubtoken', response.body.access_token );
-        } else {
-          //error
-          console.log( err );
-        }
-      } )
+    Object.assign( options, code );
+
+    fetch( 'https://github.com/login/oauth/access_token',
+      {
+        method: 'POST',
+        body: JSON.stringify( options )
+      }
+    )
+    .then( response => response.json() )
+    .then( response => {
+        //success - received token
+        console.log( response );
+        window.localStorage.setItem( 'githubtoken', response.body.access_token )
+    } )
+    .catch( error => console.log( error ))
   }
 
   authWindow.webContents.on( 'will-navigate', function( event, url ) {
