@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/Style.css';
 import Differ from '../components/Differ.js';
-
+import Oauth from '../components/Oauth.js';
 
 class App extends Component {
   constructor() {
@@ -9,8 +9,10 @@ class App extends Component {
 
     this.state = {
       githubToken: null,
-      currentDiff: null
+      currentDiff: null,
+      authenticatedUser: null
     };
+    this.authentication = this.authentication.bind( this );
   };
   componentWillMount() {
     var token = process.env.REACT_APP_GITHUB_PERSONAL_TOKEN;
@@ -31,14 +33,24 @@ class App extends Component {
     )
     .then( response => response.json() )
     .then( response => {
-      debugger
       this.setState( { currentDiff: response } );
     } )
   };
+  authentication() {
+    if ( this.state.authenticatedUser ) {
+      return(
+        <Differ githubToken={ this.state.githubToken } currentDiff={ this.state.currentDiff } />
+      )
+    } else {
+      return(
+        <Oauth/>
+      )
+    }
+  }
   render() {
     return (
       <div className="App">
-        <Differ githubToken={ this.state.githubToken } currentDiff = { this.state.currentDiff }/>
+        { this.authentication() }
       </div>
     );
   }
