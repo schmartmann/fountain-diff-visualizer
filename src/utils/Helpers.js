@@ -1,10 +1,10 @@
-import { parse } from 'url';
-const eletron = require( 'electron' );
+// import { parse } from 'url';
+import { requestGithubToken } from '../actions';
+const eletron = window.require( 'electron' );
 const remote = electron.remote;
 const BrowserWindow = remote.BrowserWindow;
 const dialog = remote.dialog;
 
-import { requestGithubToken } from '../actions';
 
 export function authGithub( dispatch ) {
   //build oauth page url
@@ -14,7 +14,7 @@ export function authGithub( dispatch ) {
     scopes: [ "user:email", "notifications" ]
   };
 
-  const authWindow = new BrowserWindow( {
+  let authWindow = new BrowserWindow( {
     width: 800,
     height: 600,
     show: true,

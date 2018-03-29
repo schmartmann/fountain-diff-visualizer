@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../stylesheets/Style.css';
 import Differ from '../components/Differ.js';
 import LoginPage from '../components/LoginPage.js';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor() {
@@ -56,4 +57,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps( state, ownProps ) {
+  return {
+    user_auth: state.auth
+  };
+}
+
+export default connect( mapStateToProps, null )( App );

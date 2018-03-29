@@ -4,7 +4,7 @@ export function requestGithubToken( options, code ) {
   const options = Object.assign( options, code );
 
   return function( dispatch ) {
-    fetch( 'https://github.com/login/oauth/access_token',
+    return fetch( 'https://github.com/login/oauth/access_token',
       {
         method: 'POST',
         body: JSON.stringify( options ),
@@ -22,5 +22,12 @@ export function updateToken( response ) {
   return {
     type: 'UPDATE_TOKEN',
     data: response
+  }
+};
+
+export function error( message ) {
+  return {
+    type: 'ERROR',
+    data: message
   }
 };
