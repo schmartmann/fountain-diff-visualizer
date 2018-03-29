@@ -9,6 +9,7 @@
     "printf": "^0.2.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.1"
   },
   "homepage": "./",

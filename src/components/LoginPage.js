@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 const { ipcRenderer } = window.require('electron');
+import { authGithub } from '../utils/Helpers';
 
-class Oauth extends Component {
+class LoginPage extends Component {
   constructor() {
     super();
 

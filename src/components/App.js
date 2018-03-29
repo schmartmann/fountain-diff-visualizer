@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/Style.css';
 import Differ from '../components/Differ.js';
-import Oauth from '../components/Oauth.js';
+import LoginPage from '../components/LoginPage.js';
 
 class App extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class App extends Component {
     this.authentication = this.authentication.bind( this );
   };
   componentWillMount() {
-    var token = process.env.REACT_APP_GITHUB_PERSONAL_TOKEN;
+    var token;
     this.setState( { githubToken: token } );
   };
   componentDidMount() {
@@ -43,7 +43,7 @@ class App extends Component {
       )
     } else {
       return(
-        <Oauth/>
+        <LoginPage/>
       )
     }
   }
